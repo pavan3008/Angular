@@ -6,4 +6,5 @@ export class Dish{
     featured: boolean;
     label :string;
     description:string;
+    
 }

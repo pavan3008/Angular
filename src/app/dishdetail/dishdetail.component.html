@@ -1,12 +1,20 @@
 <div class="container"
-    fxLayout="row"
+    fxLayout="row wrap"
     fxLayout.sm="column"
     fxLayout.xs="column"
     fxLayoutAlign.gt-md="space-around center"
     fxLayoutGap="10px" 
     fxLayoutGap.xs="0">
 
+    <div fxFlex="100">
+      <div>
+        <h3>{{dish.name | uppercase}}</h3>
+        <hr>
+      </div>
+    </div>
+
   <div fxFlex="40">
+    
     
     <div fxFlex *ngIf="dish">
       <mat-card>
@@ -21,6 +29,7 @@
           </p>
         </mat-card-content>
         <mat-card-actions>
+          <button mat-button (click)="goBack()">BACK</button>
           <button mat-button>LIKE</button>
           <button mat-button>SHARE</button>
         </mat-card-actions>
@@ -28,53 +37,26 @@
     </div>
   </div>
 
-  <div fxFlex="40">
-    <h3>Comments</h3>
-    <br>
-    <p>
-      Imagine all the planings, living in conFusion!' <br>
-      5 stars <br>
-      --John Lemon Oct 17,2012
-      <br>
-      
-    </p>
-
-    <p>
-      The best Trael <br>
-      5 stars <br>
-      --Livingstone Dec 17,2012
-      <br>
-      
-    </p>
-
-    <p>
-      Sends anyone to heavent <br>
-      4 stars <br>
-      --JClarke Jun 01,2013
-      <br>
-      
-    </p>
-
-    <p>
-      Ultimate, Reaching for the stars! <br>
-      5 stars <br>
-      --Lee Jan 17,2014
-      <br>
-      
-    </p>
-
-    <p>
-      Dream Destinations <br>
-      5 stars <br>
-      --David Nov 27,2015
-      <br>
-      
-    </p>
-    
-          
-    
+  
+  <div fxFlex="40" *ngIf="dish">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <h3>Comments</h3>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-list *ngFor="let comment of dish.comments">
+        <mat-list-item>
+          <p>
+            {{comment.comment}}
+            <br>{{comment.rating}} Stars
+            <br>-- {{comment.author}} {{comment.date | date}}
+          </p>
+        </mat-list-item>
+        <h1 matline></h1>
+      </mat-list>
+    </mat-card>
   </div>
-
 
   
 
